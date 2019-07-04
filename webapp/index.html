@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <script>
+
+        const Http = new XMLHttpRequest();
+        const defaultUrl = 'http://localhost:9001/api/easy-iot-env/publish/';
+        var url = 'http://localhost:9001/api/easy-iot-env/publish/';
+
+        function publish() {
+            var topic = document.getElementById("topic").value;
+            var message = document.getElementById("message").value;
+
+            url += "?topic=" + topic;
+            url += "&message=" + message;
+
+            Http.open("GET", url);
+            Http.send();
+
+            url = defaultUrl;
+        }
+
+        function turnOn() {
+            var topic = "/app/l1";
+            var message = "1";
+            url += "?topic=" + topic;
+            url += "&message=" + message;
+
+            Http.open("GET", url);
+            Http.send();
+
+            url = defaultUrl;
+        }
+
+        function turnOff() {
+            var topic = "/app/l1";
+            var message = "0";
+            url += "?topic=" + topic;
+            url += "&message=" + message;
+
+            Http.open("GET", url);
+            Http.send();
+
+            url = defaultUrl;
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <input id="topic" type="text" placeholder="topic">
+    <input id="message" type="text" placeholder="message">
+    <button onclick="publish()">Enviar</button> <br>
+
+    <button onclick="turnOn()">Ligar lampada</button> <br>
+    <button onclick="turnOff()">Desligar lampada</button> <br>
+</body>
+
+</html>
